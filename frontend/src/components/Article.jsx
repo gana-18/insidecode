@@ -61,7 +61,7 @@ export default function Article(props){
                           <p>{props.item.createdAt}</p>
                         </div>
                         {!isFollowing && <button className='follow' onClick={handleFollow}>
-                          <img src="http://localhost:3000/images/icons8-follow-48.png" alt="plus" />
+                          <img src="/images/icons8-follow-48.png" alt="plus" />
                           </button>}
                         {isFollowing && <button className='following' onClick={handleFollow}>Following</button>}
                     </div>
@@ -72,11 +72,11 @@ export default function Article(props){
 
                     <div className='article-likes'>
                       <div className='likes'>
-                      <img src="http://localhost:3000/images/icons8-love-24.png" alt="heart" />
+                      <img src="/images/icons8-love-24.png" alt="heart" />
                       <span>{Object.keys(props.item.likes)?Object.keys(props.item.likes).length:0}</span>
                       </div>
                       <div className='views'>
-                      <img src="http://localhost:3000/images/icons8-eye-24.png" alt="heart" />
+                      <img src="/images/icons8-eye-24.png" alt="heart" />
                       <span>{Math.floor(Math.random()*100)}</span>
                       </div>
                     </div>

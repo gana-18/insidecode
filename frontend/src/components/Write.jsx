@@ -5,7 +5,7 @@ function Write({user}) {
     <div className="write">
       <a href= {url}>
         <button>
-          <img src="http://localhost:3000/images/icons8-write-32.png" alt="pen" />
+          <img src="/images/icons8-write-32.png" alt="pen" />
           Write
         </button>
       </a>

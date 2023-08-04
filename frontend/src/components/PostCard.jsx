@@ -47,18 +47,18 @@ function PostCard(props) {
         <button onClick={handleLike}>
          {likes && user && likes[user._id]
          ?
-         (<img src="http://localhost:3000/images/icons8-heart-suit-32.png" alt="like"/>)
+         (<img src="/images/icons8-heart-suit-32.png" alt="like"/>)
          :
-         (<img src="http://localhost:3000/images/icons8-heart-32.png" alt="like"/>)
+         (<img src="/images/icons8-heart-32.png" alt="like"/>)
          }
          </button>
          <span>{Object.keys(likes)?Object.keys(likes).length:0}</span>
          <button onClick={handleBookmark}>
             {bookmarks && user && bookmarks[props.item?props.item._id:null]
             ?
-            (<img src="http://localhost:3000/images/icons8-bookmark-32 (1).png" alt="bookmark"/>)
+            (<img src="/images/icons8-bookmark-32 (1).png" alt="bookmark"/>)
             :
-            (<img src="http://localhost:3000/images/icons8-bookmark-32.png" alt="bookmark"/>)
+            (<img src="/images/icons8-bookmark-32.png" alt="bookmark"/>)
             }
          </button>
         </div>

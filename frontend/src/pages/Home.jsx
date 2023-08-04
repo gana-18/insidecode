@@ -44,14 +44,14 @@ const url=user? `/home/following/${user._id}` : `/`;
           <div>
           <NavLink to="/home" style={{ textDecoration: 'none',display:'flex',alignItems:'center',justifyContent:'center', color: location.pathname === "/home" ? '#3B82F6' : 'black' }}
               activeStyle={{ color: 'black' }}>
-               <img src="http://localhost:3000/images/icons8-fantasy-32.png" alt="magic" /> Personalized
+               <img src="/images/icons8-fantasy-32.png" alt="magic" /> Personalized
         </NavLink>
           </div>
         <div>
         <NavLink to={url} style={{ textDecoration: 'none',display:'flex',alignItems:'center',justifyContent:'center',color: location.pathname === "/home/following" ? '#3B82F6' : 'black' }}
               activeStyle={{ color: '#3B82F6' }}
             >
-             <img src="http://localhost:3000/images/icons8-following-32.png" alt="following"/> Following
+             <img src="/images/icons8-following-32.png" alt="following"/> Following
         </NavLink>
         </div>
         
