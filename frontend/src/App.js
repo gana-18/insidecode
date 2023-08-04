@@ -18,23 +18,19 @@ function App() {
   const [posts,setPosts] = useState(null);
   const post = useSelector((state) => state.post);
   const [followingPosts,setFollowingPosts] = useState(null);
-  
-
-  
   useEffect(() => {
-    dispatch(login())
-      .then((user) => {
-        // Handle successful authentication and update Redux state
-        dispatch(setUser(user));
-      })
-      .catch((error) => {
-        // Handle authentication failure
-        console.error(error);
-        // Clear user data in Redux state
-        dispatch(setUser(null));
-      });
-  }, [dispatch]);
+    if (!auth.user) {
+      dispatch(login());
+    }
+  }, [auth.user, dispatch]);
 
+  useEffect(() => {
+    if (auth.status === "succeeded") {
+      setUser(auth.user);
+    } else if (auth.status === "failed") {
+      setUser(null);
+    }
+  }, [auth.status, auth.user]);
 
   useEffect(() => {
     if (post.status === 'idle') {

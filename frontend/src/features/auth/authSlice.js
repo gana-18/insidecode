@@ -1,11 +1,5 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 
-const initialState = {
-    user: [],
-    status: "idle",
-    error: null,
-    };
-
     export const login = createAsyncThunk('auth/login', async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API}/auth/login/success`, {
@@ -17,80 +11,44 @@ const initialState = {
             "Access-Control-Allow-Credentials": true,
           },
         });
-    
-        const data = await response.json();
         if (response.status === 200) {
-          return data.user; // User data if authenticated
-        } else {
-          throw new Error(data.message); // Handle authentication failure
-        }
-      } catch (error) {
-        throw new Error("Authentication request failed");
-      }
-    });
-
-export const logout= createAsyncThunk('auth/logout',async()=>{
-    const response = await fetch(`${process.env.React_APP_API}/auth/logout`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
+          const resObject = await response.json();
           return resObject.user;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-        return response;
-
-})
+        } else {
+          throw new Error("Authentication has failed!");
+        }
+      } catch (err) {
+        console.log(err);
+        throw err;
+      }
+});
 
 export const authSlice = createSlice({
     name: "auth",
-    initialState,
+    initialState:{
+      user: null,
+      status: "idle",
+      error: null,
+    },
     reducers: {
         setUser: (state, action) => {
             state.user = action.payload;
         }
     },
-    extraReducers:{
-        [login.pending]:(state,action)=>{
-            state.status="loading";
-        }
-        ,
-
-        [login.fulfilled]:(state,action)=>{
-            state.status="succeeded";
-            state.user=action.payload;
-        }
-        ,
-        [login.rejected]:(state,action)=>{
-            state.status="failed";
-            state.error=action.error.message;
-        }
-        ,
-        [logout.pending]:(state,action)=>{
-            state.status="loading";
-        } 
-        ,
-        [logout.fulfilled]:(state,action)=>{
-            state.status="succeeded";
-            state.user=null;
-        }
-        ,
-        [logout.rejected]:(state,action)=>{
-            state.status="failed";
-            state.error=action.error.message;
-        }
-    }
+    extraReducers: (builder) => {
+      builder
+        .addCase(login.pending, (state) => {
+          state.status = "loading";
+        })
+        .addCase(login.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          state.user = action.payload;
+        })
+        .addCase(login.rejected, (state, action) => {
+          state.status = "failed";
+          state.error = action.error.message;
+        })
+    },
 });
 export const {setUser} = authSlice.actions;
 export default authSlice.reducer;
