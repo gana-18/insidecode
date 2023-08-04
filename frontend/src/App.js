@@ -13,10 +13,25 @@ import Bookmarks from "./pages/Bookmarks";
 import Following from "./pages/Following";
 function App() {
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.auth);
+  const [user,setUser] = useState(null);
+  const auth = useSelector((state) => state.auth);
   const [posts,setPosts] = useState(null);
   const post = useSelector((state) => state.post);
   const [followingPosts,setFollowingPosts] = useState(null);
+  useEffect(() => {
+    if (!auth.user) {
+      dispatch(login());
+    }
+  }, [auth.user, dispatch]);
+
+  useEffect(() => {
+    if (auth.status === "succeeded") {
+      setUser(auth.user);
+    } else if (auth.status === "failed") {
+      setUser(null);
+    }
+  }, [auth.status, auth.user]);
+
   useEffect(() => {
     if (post.status === 'idle') {
       dispatch(fetchPosts());
@@ -45,14 +60,14 @@ function App() {
   }, [post.status, dispatch]);
   const write = user ? `/post/create/${user._id}` : '/';
   const following=user? `/home/following/${user._id}` : `/`;
-  console.log("auth is",user)
+  console.log("auth is",auth)
   return (
     <>
         <div>
         <Header user={user}/>
           <Routes>
             <Route path="/" element={user? <Navigate to ="/home"/>:<Login/>}/>
-            <Route path="/home" element={<Home/>}/>
+            <Route path="/home" element={user?<Home/>:<Navigate to ="/home"/>}/>
             <Route path={following} element={<Home/>}/>
             <Route path= {write} element={<BlogInput/>}/>
             <Route path="/profile/:id" element={<Profile/>}/>
