@@ -185,8 +185,8 @@ font-family: 'Schibsted Grotesk', sans-serif;
   border:1px solid #E0E6F1;
   margin-top:20px;
   padding:15px;
-  width:55%;
-  height:210px;
+  width:60%;
+  height:260px;
   background-color: white;
   border-radius: 10px;
   transition: all 0.5s ease;
@@ -228,6 +228,9 @@ font-family: 'Schibsted Grotesk', sans-serif;
   margin-top:10px;
   margin-bottom:10px;
   cursor: pointer;
+}
+.content>div{
+  margin-top:10px;
 }
 .blog-right{
   display: flex;
