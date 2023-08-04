@@ -66,7 +66,7 @@ function App() {
         <Header user={user}/>
           <Routes>
             <Route path="/" element={user? <Navigate to ="/home"/>:<Login/>}/>
-            <Route path="/home" element={<Home/>}/>
+            <Route path="/home" element={user?<Home/>:<Navigate to ="/home"/>}/>
             <Route path={following} element={<Home/>}/>
             <Route path= {write} element={<BlogInput/>}/>
             <Route path="/profile/:id" element={<Profile/>}/>
