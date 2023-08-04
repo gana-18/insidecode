@@ -6,29 +6,28 @@ const initialState = {
     error: null,
     };
 
-export const login= createAsyncThunk('auth/login',async()=>{
-    const response = await fetch(`${process.env.REACT_APP_API}/auth/login/success`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          return resObject.user;
-        })
-        .catch((err) => {
-          console.log(err);
+    export const login = createAsyncThunk('auth/login', async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API}/auth/login/success`, {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+          },
         });
-        return response;
-
-})
+    
+        const data = await response.json();
+        if (response.status === 200) {
+          return data.user; // User data if authenticated
+        } else {
+          throw new Error(data.message); // Handle authentication failure
+        }
+      } catch (error) {
+        throw new Error("Authentication request failed");
+      }
+    });
 
 export const logout= createAsyncThunk('auth/logout',async()=>{
     const response = await fetch(`${process.env.React_APP_API}/auth/logout`, {
