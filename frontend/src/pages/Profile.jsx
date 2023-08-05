@@ -36,6 +36,7 @@ function Profile() {
         <Card
         key={item._id}
         user={item}
+        curuser={user}
         />
       ));
 

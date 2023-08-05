@@ -37,15 +37,15 @@ font-family: 'Schibsted Grotesk', sans-serif;
   align-items: center;
   justify-content: center;
   width:100%;
-  margin-top:180px;
+  margin-top:150px;
 }
 .login-btn{
-  background-color:#F8FAFC;
+  background-color:white;
   color:#4A52EA;
   display: flex;
   align-items: center;
   justify-content: center;
-  width:50%;
+  width:40%;
   flex-direction: column;
 }
 .login-btn>div{
@@ -70,7 +70,13 @@ font-family: 'Schibsted Grotesk', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  width:50%;
+  width:40%;
+}
+.kidimg{
+  width:20%;
+}
+.kidimg>img{
+  width:100%;
 }
 .login-text{
   flex-direction: column;
@@ -138,6 +144,23 @@ font-family: 'Schibsted Grotesk', sans-serif;
 @media screen and (max-width: 850px){
   .nav2{
     flex-direction: column;
+  }
+  .login{
+    flex-direction: column;
+  }
+  .login-btn{
+    width:100%;
+  }
+  .login-btn>div{
+    width:80%;
+  }
+  .login-text{
+    margin-top: 30px;
+    width:80%;
+  }
+  .kidimg{
+    margin-top: 20px;
+    width:45%;
   }
   .list {
       flex-direction: column;
@@ -275,6 +298,30 @@ font-family: 'Schibsted Grotesk', sans-serif;
   justify-content: center;
   align-items: center;
   margin-top:40px;
+}
+.bio{
+  padding: 10px;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  background-color:white;
+}
+.bio-save{
+  cursor: pointer;
+  width: 40%;
+  padding:5px;
+  border: none;
+  font-weight: 700;
+  font-size:15px;
+  background-color: #4A52EA;
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+.bio-save:hover{
+  background-color: #6168e0;
 }
 .card{
   width:75%;

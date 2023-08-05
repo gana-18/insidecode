@@ -38,13 +38,13 @@ const url=user? `/home/following/${user._id}` : `/`;
         <div className="homelinks">
           <div>
           <NavLink to="/home" style={{ textDecoration: 'none',display:'flex',alignItems:'center',justifyContent:'center', color: location.pathname === "/home" ? '#3B82F6' : 'black' }}
-              activeStyle={{ color: 'black' }}>
+              activestyle={{ color: 'black' }}>
                <img src="/images/icons8-fantasy-32.png" alt="magic" /> Personalized
         </NavLink>
           </div>
         <div>
         <NavLink to={url} style={{ textDecoration: 'none',display:'flex',alignItems:'center',justifyContent:'center',color: location.pathname === "/home/following" ? '#3B82F6' : 'black' }}
-              activeStyle={{ color: '#3B82F6' }}
+              activestyle={{ color: '#3B82F6' }}
             >
              <img src="/images/icons8-following-32.png" alt="following"/> Following
         </NavLink>

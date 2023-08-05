@@ -58,8 +58,6 @@ function App() {
       setFollowingPosts(null);
     }
   }, [post.status, dispatch]);
-  const write = user ? `/post/create/${user._id}` : '/';
-  const following=user? `/home/following/${user._id}` : `/`;
   console.log("auth is",auth)
   return (
     <>
@@ -68,8 +66,8 @@ function App() {
           <Routes>
             <Route path="/" element={user? <Navigate to ="/home"/>:<Login/>}/>
             <Route path="/home" element={user?<Home/>:<Navigate to ="/home"/>}/>
-            <Route path={following} element={<Home/>}/>
-            <Route path= {write} element={<BlogInput/>}/>
+            <Route path={user? `/home/following/${user._id}` : `/`} element={<Home/>}/>
+            <Route path= {user ? `/post/create/${user._id}` : '/'} element={<BlogInput/>}/>
             <Route path="/profile/:id" element={<Profile/>}/>
             <Route path="/post/:id" element={<Post/>}/>
             <Route path="/bookmarks" element={<Bookmarks/>}/>
