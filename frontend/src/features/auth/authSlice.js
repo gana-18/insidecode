@@ -2,7 +2,7 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 
     export const login = createAsyncThunk('auth/login', async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API}/auth/login/success`, {
+        const response = await fetch("https://blogapi-wxm7.onrender.com/auth/login/success", {
           method: "GET",
           credentials: "include",
           headers: {

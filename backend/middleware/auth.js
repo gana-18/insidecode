@@ -1,8 +1,5 @@
 module.exports={
     ensureAuth:function(req,res,next){
-        if (req.originalUrl === '/post/create') {
-            return next();
-          }
         if(req.isAuthenticated()){
             return next()
         }else{

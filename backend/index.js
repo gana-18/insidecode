@@ -40,7 +40,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(cors({
-    origin:`${process.env.CLIENT_URL}`,
+    origin:"https://insidecode.onrender.com/",
     methods:"GET,POST,PUT,DELETE",
     credentials:true
 }))
