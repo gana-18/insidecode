@@ -1,8 +1,8 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 
-    export const login = createAsyncThunk('auth/login', async () => {
+   export const login = createAsyncThunk('auth/login', async () => {
       try {
-        const response = await fetch("https://blogapi-wxm7.onrender.com/auth/login/success", {
+        const response = await fetch(`${process.env.REACT_APP_API}/auth/login/success`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -26,11 +26,13 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 export const authSlice = createSlice({
     name: "auth",
     initialState:{
-      user: null,
-      status: "idle",
-      error: null,
+      isSignedIn: false,
+       user: null,
     },
     reducers: {
+      setSignedIn: (state, action) => {
+        state.isSignedIn = action.payload;
+      },
         setUser: (state, action) => {
             state.user = action.payload;
         }
@@ -48,9 +50,9 @@ export const authSlice = createSlice({
           state.status = "failed";
           state.error = action.error.message;
         })
-    },
+    }
 });
-export const {setUser} = authSlice.actions;
+export const {setSignedIn,setUser} = authSlice.actions;
 export default authSlice.reducer;
 
 

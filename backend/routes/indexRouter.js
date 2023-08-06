@@ -15,7 +15,7 @@ router.post('/follow/:authorId',addFollowing)
 
 router.post('/unfollow/:authorId',removeFollowing)
 
-router.get('/home',ensureAuth,getPosts)
+router.get('/home',getPosts)
 
 router.get('/following/:id',getFollowingPosts)
 
