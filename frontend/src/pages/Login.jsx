@@ -1,6 +1,6 @@
 function Login(){
   const googleAuth = () => {
-    window.open(`${process.env.REACT_APP_API}/auth/google`,"_blank")
+    window.open(`${process.env.REACT_APP_API}/auth/google`, "_self")
   }
   return (
     <>
