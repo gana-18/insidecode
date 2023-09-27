@@ -250,6 +250,33 @@ export const updateBookmarks = createAsyncThunk('post/updateBookmarks', async (i
   }
 });
 
+//delete post by id
+
+export const deletePost = createAsyncThunk('post/deletePost', async (id) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API}/post/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+
+    });
+    if (response.status === 200) {
+      const resObject = await response.json();
+      console.log(resObject);
+      return resObject;
+    } else {
+      throw new Error("delete has failed!");
+    }
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+});
+
 export const postSlice = createSlice({
     name: "post",
     initialState,

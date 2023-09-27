@@ -1,6 +1,6 @@
 const express=require('express')
 const router=express.Router()
-const {createPost,getPost}=require('../controllers/postControllers')
+const {createPost,getPost,deletePost}=require('../controllers/postControllers')
 const {ensureAuth,ensureGuest}=require('../middleware/auth')
 
 // @desc CREATE POST
@@ -19,8 +19,6 @@ router.put('/user/:id',ensureAuth,(req,res)=>{
 
 // @desc DELETE POST BY ID OF USER
 // @Method DELETE
-router.delete('/user/:id',ensureAuth,(req,res)=>{
-    res.send("delete post by id")
-})
+router.delete('/:id',deletePost)
 
 module.exports=router

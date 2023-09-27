@@ -1,15 +1,16 @@
 import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAuthor, updateLikes,updateBookmarks} from '../features/post/postSlice';
+import { fetchAuthor, updateLikes,updateBookmarks,deletePost} from '../features/post/postSlice';
 function PostCard(props) {
+    
     const sanitizedContent = { __html: DOMPurify.sanitize(props.item?props.item.content:null) };
     const {user}=useSelector((state) => state.auth);
     const[likes,setLikes]=useState(props.item?props.item.likes:{})
     const [bookmarks,setBookmarks]=useState(user?user.bookmarks:{})
     console.log("bookmarks1",bookmarks)
     const dispatch = useDispatch();
-
+    console.log(props,user)
     const handleLike=()=>{
         const userId = props.author ? props.author._id : null;
         if(userId){
@@ -28,6 +29,15 @@ function PostCard(props) {
         }
     };
     console.log("likes state",likes,"bookmarks state",bookmarks)
+
+    const handleDelete=()=>{
+        const postId = props.item ? props.item._id : null;
+        if (postId) {
+            dispatch(deletePost(postId))
+        }
+
+    }
+
   return (
     <div className="postcard">
         <div className="coverimage">
@@ -60,6 +70,9 @@ function PostCard(props) {
             :
             (<img src="/images/icons8-bookmark-32.png" alt="bookmark"/>)
             }
+         </button>
+         <button onClick={handleDelete}>
+            {user &&props.author && (user._id===props.author._id) && (<img src="/images/icons8-delete-32.png" alt="edit"/>)}
          </button>
         </div>
     </div>

@@ -13,6 +13,7 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
         });
         if (response.status === 200) {
           const resObject = await response.json();
+          console.log(resObject)
           return resObject.user;
         } else {
           throw new Error("Authentication has failed!");
