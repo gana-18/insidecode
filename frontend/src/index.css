@@ -66,6 +66,17 @@ font-family: 'Schibsted Grotesk', sans-serif;
   border:none;
   font-weight: 700;
 }
+.github{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:10px;
+  margin-top:50px;
+}
+.github>h4>a{
+  text-decoration: none;
+  color: #2563EB;
+}
 .login-text{
   display: flex;
   align-items: center;

@@ -22,7 +22,10 @@ function Login(){
         <img src="/images/fun-3d-illustration-cartoon-kid-with-vr-helmet.jpg" alt="kid"/>
       </div>
     </div>
-       
+    <div className="github">
+        <h4>Github repository🚀:</h4>
+        <h4><a href="https://github.com/gana-18/insidecode"> Project</a></h4>
+    </div>
     </>
     
   )
