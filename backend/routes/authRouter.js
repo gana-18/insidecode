@@ -3,11 +3,10 @@ const router = express.Router();
 const passport = require('passport');
 
 router.get('/login/success', (req, res) => {
-  const user=req.user;
     res.status(200).json({
       success: true,
       message: "User has successfully authenticated",
-      user:user
+      user:req.user
     });
 });
 
