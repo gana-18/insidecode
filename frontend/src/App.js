@@ -1,7 +1,7 @@
 import { useEffect,useState } from "react";
 import {Routes,Route, Navigate} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import { login} from './features/auth/authSlice'
+import {fetchLogin} from './features/auth/authSlice'
 import {fetchPosts,fetchFollowingPosts,reset} from './features/post/postSlice';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -18,9 +18,9 @@ function App() {
   const [posts,setPosts] = useState(null);
   const post = useSelector((state) => state.post);
   const [followingPosts,setFollowingPosts] = useState(null);
-  useEffect(() => {
+  /*useEffect(() => {
     if (!auth.user) {
-      dispatch(login());
+      dispatch(fetchLogin());
     }
   }, [auth.user, dispatch]);
 
@@ -30,7 +30,19 @@ function App() {
     } else if (auth.status === "failed") {
       setUser(null);
     }
-  }, [auth.status, auth.user]);
+  }, [auth.status, auth.user]);*/
+
+  useEffect(() => {
+    if(auth.status==='idle'){
+      dispatch(fetchLogin());
+    }
+    if(auth.status==='succeeded'){
+      setUser(auth.user);
+    }
+    if(auth.status==='failed'){
+      setUser(null);
+    }
+  }, [auth.status, dispatch]);
 
   useEffect(() => {
     if (post.status === 'idle') {
