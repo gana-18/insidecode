@@ -33,18 +33,6 @@ function App() {
   }, [auth.status, auth.user]);*/
 
   useEffect(() => {
-    if(auth.status==='idle'){
-      dispatch(fetchLogin());
-    }
-    if(auth.status==='succeeded'){
-      setUser(auth.user);
-    }
-    if(auth.status==='failed'){
-      setUser(null);
-    }
-  }, [auth.status, dispatch]);
-
-  useEffect(() => {
     if (post.status === 'idle') {
       dispatch(fetchPosts());
     }
@@ -70,6 +58,19 @@ function App() {
       setFollowingPosts(null);
     }
   }, [post.status, dispatch]);
+
+  useEffect(() => {
+    if(auth.status==='idle'){
+      dispatch(fetchLogin());
+    }
+    if(auth.status==='succeeded'){
+      setUser(auth.user);
+    }
+    if(auth.status==='failed'){
+      setUser(null);
+    }
+  }, [auth.status, dispatch]);
+
   console.log("auth is",auth)
   return (
     <>
