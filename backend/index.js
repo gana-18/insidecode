@@ -29,7 +29,7 @@ app.use(session({
     saveUninitialized:false,
     store:MongoStore.create({
         mongoUrl:process.env.MONGO_URL,
-    collectinName: "sessions",
+    collectionName: "sessions",
     stringify: false
     })
 }))
