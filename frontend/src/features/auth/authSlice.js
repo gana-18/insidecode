@@ -5,7 +5,7 @@ const initialState = {
   error: null,
   };
 
-   export const fetchLogin = createAsyncThunk('auth/login', async () => {
+  export const fetchLogin = createAsyncThunk("auth/fetchLogin", async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API}/auth/login/success`, {
           method: "GET",
@@ -18,7 +18,6 @@ const initialState = {
         });
         if (response.status === 200) {
           const resObject = await response.json();
-          console.log(resObject)
           return resObject.user;
         } else {
           throw new Error("Authentication has failed!");
