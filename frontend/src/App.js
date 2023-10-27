@@ -78,7 +78,7 @@ function App() {
         <Header user={user}/>
           <Routes>
             <Route path="/" element={user? <Navigate to ="/home"/>:<Login/>}/>
-            <Route path="/home" element={user?<Home/>:<Navigate to ="/"/>}/>
+            <Route path="/home" element={<Home/>}/>
             <Route path={user? `/home/following/${user._id}` : `/`} element={<Home/>}/>
             <Route path= {user ? `/post/create/${user._id}` : '/'} element={<BlogInput/>}/>
             <Route path="/profile/:id" element={<Profile/>}/>
