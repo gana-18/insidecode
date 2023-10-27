@@ -31,11 +31,10 @@ router.get('/google',passport.authenticate('google',{scope:['profile']}))
    res.json(req.user)
 });*/
 
-router.get('/google/callback',passport.authenticate("google",{
-   successRedirect:process.env.CLIENT_URL+"/home",
-   failureRedirect:"/login/failed"
-}))
-
+router.get('/google/callback',passport.authenticate('google',{failureRedirect:'/login/failed'}),(req,res)=>{
+   console.log("req.user",req.user)
+   res.redirect(`${process.env.CLIENT_URL}/home`)
+});
 // @desc  LOGOUT USER
 // @Method GET LOGOUT
 router.get('/logout',(req,res)=>{

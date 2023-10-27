@@ -60,7 +60,7 @@ function App() {
   }, [post.status, dispatch]);
 
   useEffect(() => {
-    if(auth.status==='idle'){
+    if(auth.status==='idle'||auth.status==='loading'){
       dispatch(fetchLogin());
     }
     if(auth.status==='succeeded'){
